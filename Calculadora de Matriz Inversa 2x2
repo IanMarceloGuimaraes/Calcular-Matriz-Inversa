@@ -5,39 +5,41 @@ public class CalcularInversas {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        double vetor[] = {0,0,0,0};
+        double[][] matriz = new double[2][2];
         double determinante = 1;
 
         System.out.println("Digite [1,1]");
-        vetor[0] = sc.nextInt();
+        matriz[0][0] = sc.nextInt();
 
         System.out.println("Digite [1,2]");
-        vetor[1] = sc.nextInt();
+        matriz[0][1] = sc.nextInt();
 
         System.out.println("Digite [2,1]");
-        vetor[2] = sc.nextInt();
+        matriz[1][0] = sc.nextInt();
 
         System.out.println("Digite [2,2]");
-        vetor[3] = sc.nextInt();
+        matriz[1][1] = sc.nextInt();
 
-        determinante = vetor[0] * vetor[3] - vetor[1] * vetor[2];
+        determinante = matriz[0][0] * matriz[1][1] - matriz[0][1] * matriz[1][0];
 
         if(determinante == 0) {
-            System.out.println("Uma matriz com determinante igual a zero não tem inversa.");
+            System.out.println("Uma matriz com determinante igual a zero não tem inversa. (Digite um número diferente de 0)");
         } else {
             System.out.println("Matriz original: \n");
-            System.out.printf("[ %.2f  %.2f ]\n\n", vetor[0], vetor[1]);
-            System.out.printf("[ %.2f  %.2f ]\n\n", vetor[2], vetor[3]);
+            System.out.printf("[ %.2f  %.2f ]\n\n", matriz[0][0], matriz[0][1]);
+            System.out.printf("[ %.2f  %.2f ]\n\n", matriz[1][0], matriz[1][1]);
 
             System.out.println("Determinante da Matriz: "+determinante+"\n");
 
-            for(int i = 0; i < 4; i++) {
-                vetor[i] /= determinante;
+            for(int i = 0; i < 2; i++) {
+                for(int j = 0; j < 2; j++) {
+                    matriz[i][j] /= determinante;
+                }
             }
 
             System.out.println("A matriz inversa é: \n");
-            System.out.printf("[ %.2f  %.2f ]\n\n", vetor[3], vetor[1]*-1);
-            System.out.printf("[ %.2f  %.2f ]\n", vetor[2]*-1, vetor[0]);
+            System.out.printf("[ %.2f  %.2f ]\n\n", matriz[1][1], matriz[0][1]*-1);
+            System.out.printf("[ %.2f  %.2f ]\n", matriz[1][0]*-1, matriz[0][0]);
         }
 
         sc.close();
