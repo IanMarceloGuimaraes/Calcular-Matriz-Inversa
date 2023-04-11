@@ -1,1 +1,45 @@
+import java.util.Scanner;
 
+public class CalcularInversas {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        double vetor[] = {0,0,0,0};
+        double determinante = 1;
+
+        System.out.println("Digite [1,1]");
+        vetor[0] = sc.nextInt();
+
+        System.out.println("Digite [1,2]");
+        vetor[1] = sc.nextInt();
+
+        System.out.println("Digite [2,1]");
+        vetor[2] = sc.nextInt();
+
+        System.out.println("Digite [2,2]");
+        vetor[3] = sc.nextInt();
+
+        determinante = vetor[0] * vetor[3] - vetor[1] * vetor[2];
+
+        if(determinante == 0) {
+            System.out.println("Uma matriz com determinante igual a zero não tem inversa.");
+        } else {
+            System.out.println("Matriz original: \n");
+            System.out.printf("[ %.2f  %.2f ]\n\n", vetor[0], vetor[1]);
+            System.out.printf("[ %.2f  %.2f ]\n\n", vetor[2], vetor[3]);
+
+            System.out.println("Determinante da Matriz: "+determinante+"\n");
+
+            for(int i = 0; i < 4; i++) {
+                vetor[i] /= determinante;
+            }
+
+            System.out.println("A matriz inversa é: \n");
+            System.out.printf("[ %.2f  %.2f ]\n\n", vetor[3], vetor[1]*-1);
+            System.out.printf("[ %.2f  %.2f ]\n", vetor[2]*-1, vetor[0]);
+        }
+
+        sc.close();
+    }
+}
